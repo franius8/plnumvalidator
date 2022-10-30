@@ -4,7 +4,7 @@ exports.validatePESEL = function(PESEL) {
   } else if (PESEL.length !== 11) {
     throw (`Argument length invalid, 11 characters expected, ${PESEL.length} provided.`);
   } else if (!/^\d+$/.test(PESEL)) {
-    throw ('Argument containts invalid characters. Only digits are allowed.');
+    throw ('Argument contains invalid characters. Only digits are allowed.');
   }
   const PESELday = Number(PESEL.slice(4, 6));
   const PESELmonth = Number(PESEL.slice(2, 4));
@@ -43,4 +43,22 @@ exports.validatePESEL = function(PESEL) {
     return false;
   } 
     return true
+}
+
+exports.getBirthDatefromPESEL = function(PESEL) {
+  if (typeof PESEL !== "string") {
+    throw ('Invalid argument type. Validator only accepts strings. See docs for more info.')
+  } else if (PESEL.length !== 11) {
+    throw (`Argument length invalid, 11 characters expected, ${PESEL.length} provided.`);
+  } else if (!/^\d+$/.test(PESEL)) {
+    throw ('Argument contains invalid characters. Only digits are allowed.');
+  } else if (!exports.validatePESEL(PESEL)) {
+    throw ('PESEL number provided is invalid');
+  }
+  const PESELday = Number(PESEL.slice(4, 6));
+  const PESELmonth = Number(PESEL.slice(2, 4));
+  const PESELyear = Number(PESEL.slice(0, 2));
+  const adjustedPESELMonth = PESELmonth > 12 ? PESELmonth - 20 : PESELmonth;
+  const fullYear = PESELmonth <= 12 ? PESELyear + 1900 : PESELyear + 2000;
+  return new Date(fullYear, adjustedPESELMonth - 1, PESELday);
 }
