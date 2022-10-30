@@ -62,3 +62,46 @@ exports.getBirthDatefromPESEL = function(PESEL) {
   const fullYear = PESELmonth <= 12 ? PESELyear + 1900 : PESELyear + 2000;
   return new Date(fullYear, adjustedPESELMonth - 1, PESELday);
 }
+
+exports.generateRandomPESEL = function() {
+  const currentYear = Number(String(new Date().getFullYear()).slice(-2));
+  const numberOfDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
+  let randomYear;
+  let randomMonth;
+  let randomDay;
+  let adjustedPESELMonth;
+  while (true) {
+    randomMonth = Math.floor(Math.random() * (32 - 1) + 1);
+    if (randomMonth <= 12 || (randomMonth >= 20 && randomMonth <= 32)) {
+      break;
+    } 
+  }
+  if (randomMonth <= 12) {
+    randomYear = Math.floor(Math.random() * 99);
+    adjustedPESELMonth = randomMonth
+  } else {
+    randomYear = Math.floor(Math.random() * (currentYear - 1));
+    adjustedPESELMonth = randomMonth - 20;
+  }
+  while(true) {
+    randomDay = Math.floor(Math.random() * (31 - 1) + 1);
+    if (randomDay <= numberOfDays[adjustedPESELMonth - 1]) {
+      break
+    }
+  }
+  const stringYear = String(randomYear).padStart(2, '0');
+  const stringMonth = String(randomMonth).padStart(2, '0');
+  const stringDay = String(randomDay).padStart(2, '0');
+  const datePart = stringYear + stringMonth + stringDay;
+  let randomPart = String(Math.floor(Math.random() * 9999)).padStart(4, '0');
+  let PESELwithoutCheckDigit = datePart + randomPart;
+  splitPESELwCD = PESELwithoutCheckDigit.split('');
+  const checkSum = weights.reduce((prev, curr, index) => 
+    prev + (Number(splitPESELwCD[index]) * curr), 0);
+  const checkDigit = String(10 - checkSum).slice(-1);
+  const randomPESEL = PESELwithoutCheckDigit + checkDigit;
+  return randomPESEL;
+}
+
+console.log(exports.generateRandomPESEL());
