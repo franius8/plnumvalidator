@@ -1,6 +1,6 @@
 {
   "name": "plnumvalidator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Validator of various Polish ID numbers (currently only PESEL)",
   "main": "script.js",
   "scripts": {
@@ -23,4 +23,3 @@
     "@franius8:registry": "https://npm.pkg.github.com"
   }
 }
-
