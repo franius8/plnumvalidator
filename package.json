@@ -1,6 +1,6 @@
 {
   "name": "plnumvalidator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Validator of various Polish ID numbers (currently only PESEL)",
   "main": "script.js",
   "scripts": {
