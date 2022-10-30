@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/franius8/plnumvalidator#readme",
   "publishConfig": {
-    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
+    "@franius8:registry": "https://npm.pkg.github.com"
   }
 }
 
