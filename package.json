@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/franius8/plnumvalidator/issues"
   },
-  "homepage": "https://github.com/franius8/plnumvalidator#readme"
+  "homepage": "https://github.com/franius8/plnumvalidator#readme",
+  "publishConfig": {
+    "@YOUR-USERNAME:registry": "https://npm.pkg.github.com"
+  }
 }
+
