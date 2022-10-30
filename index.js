@@ -103,5 +103,3 @@ exports.generateRandomPESEL = function() {
   const randomPESEL = PESELwithoutCheckDigit + checkDigit;
   return randomPESEL;
 }
-
-console.log(exports.generateRandomPESEL());
