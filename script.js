@@ -1,4 +1,4 @@
-export function validatePESEL(PESEL) {
+exports.validatePESEL = function(PESEL) {
   if (typeof PESEL !== "string") {
     throw ('Invalid argument type. Validator only accepts strings. See docs for more info.')
   } else if (PESEL.length !== 11) {
